@@ -35,12 +35,28 @@ class DoubleStack{
 	}
 
 	char popAtLeft(){
-		return 0;
+		if(isEmpty()){
+			return 0;
+		}
+		char temp;
+		temp = stack[(top_left+1)%capacity];
+		stack[(top_left+1)%capacity] = 0;
+		top_left = (top_left+1)%capacity;
+		size--;
+		return temp;
+		
 	}
 
 	char popAtRight(){
-		return 0;
-
+		if(isEmpty()){
+			return 0;
+		}
+		char temp;
+		temp = stack[top_right-1];
+		stack[top_right-1] = 0;
+		top_right--;
+		size--;
+		return temp;
 	}
 
 	void printStack(){
