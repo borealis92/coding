@@ -8,9 +8,13 @@
 	<meta name="author" content="Aurora Ramos Siegel" />
 	<meta name="description" content="A page where I display some of my work and accomplishments" />
 	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="bower_components/emoji-rain/emoji-rain.html">
+
 </head>
 <body>
-	<emoji-sparkle id="rainmaker"></emoji-sparkle>
+	<emoji-rain id="rainmaker" drops="350"></emoji-rain>
 	<nav class="sidebar">
 		<a href="/" title="Photo of Aurora">
 			<img src="me.jpg" height="200" width="200" class="avatar" />
@@ -30,6 +34,24 @@
 	<section class="content">
 		<h1><center><div class="rainbowtext">Hello! I'm Aurora.</div></center></h1>
 		<p>I'm a Data & Online-Dating Enthusist. Please check out my side project <a href="http://www.silverfoxens.com">Silver Foxens</a> that aims to create an online space for older individuals to find love.</p>
-	</section>
+
+<!-- Thanks to https://github.com/notwaldorf/emoji-rain I made my website rain! -->
+<body>
+  <emoji-rain id="rainmaker" drops="100"></emoji-rain>
+  <button onclick="rain(this, false)" id="button-rain">Make it rain!</button>
 </body>
+<script>
+  var rainmaker = document.getElementById('rainmaker');
+  function rain(button) {
+    if (rainmaker.active) {
+      rainmaker.stop();
+      button.innerHTML = "It's raining love!";
+    } else {
+      rainmaker.start();
+      button.innerHTML = "Stop in the name love!";
+    }
+  }
+
+</script>
 </html>
+
