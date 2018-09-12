@@ -1,5 +1,6 @@
+
 body {
-    background-color: #FF99CC;
+    background-color: #C0C0C0;
 }
 
 h1 {
@@ -18,7 +19,7 @@ p {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #E318A0;
+    background-color: #808080;
     overflow-x: hidden;
 }
 
@@ -72,7 +73,6 @@ p {
   75%      { -webkit-filter: invert(10%) saturate(500%) hue-rotate(90deg);
                      filter: invert(10%) saturate(500%) hue-rotate(90deg);}
 }
-
 
 
 
