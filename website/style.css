@@ -24,7 +24,6 @@ p {
 }
 
 .rainbowtext {
-  width: 300px;
   background-image: linear-gradient(90deg, 
   	#f6881a 0%, 
   	#f15c3d 17%, 
