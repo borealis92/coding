@@ -40,7 +40,7 @@
 
 /*This manipulates the top right text and the P text*/
 body {
-  color: #000000;
+  color: #000;
   font-weight: 400;
   padding: 10px 0;
   font-size: 20px;
@@ -94,7 +94,7 @@ body {
 }
 
 .image-resizer {
-  max-width: 100%;
+  max-width: 50%;
  }
 
 .heart-resizer {
