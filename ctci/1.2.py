@@ -32,7 +32,7 @@ def main():
 				  ['springer', 'springhter', False],
 				  ['abcdefghijklmnopqrstuvwxyz1234567890', 'abcdefghijklmnopqrstuvwxyz1234567890', True]]
 	n_correct = 0
-	for word,word2, correct_answer in test_cases:
+	for word, word2, correct_answer in test_cases:
 		guess = same_letters(word, word2) 
 		if guess != correct_answer:
 			print("Failed on [%s] guessed [%s] instead of [%s]" 

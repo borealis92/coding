@@ -45,7 +45,6 @@ body {
   padding: 10px 0;
   font-size: 20px;
   text-align: center;
-
 }
 /*This manipulates the picture on the top left*/
 .title-logo {
@@ -87,4 +86,18 @@ body {
   color: #0f0f0f;
   border-top: 1px solid #595959;
   text-align: center;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.image-resizer {
+  max-width: 100%;
+ }
+
+.heart-resizer {
+  max-width: 80%;
+  max-height: 500px;
 }
