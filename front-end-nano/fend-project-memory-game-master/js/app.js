@@ -1,9 +1,5 @@
-/*
- * Create a list that holds all of your cards
- */
 
-//let cardList = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bicycle", "fa-bomb"];
-
+let moveCounter = 0;
 
 function flipCard(card) {
 	card.classList.toggle("open"); //changes the color of the card
@@ -13,7 +9,6 @@ function flipCard(card) {
 function matchCard(element) {
 	element.classList.toggle("match"); 
 }
-
 
 function firstFlippedCard(){ // is a function that asks if any card is flipped
 	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
@@ -25,7 +20,6 @@ function firstFlippedCard(){ // is a function that asks if any card is flipped
 	return false; //return the boolean
 }
 
-
 function howManyCardsAreFlipped(){
 	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
 	let numOfCardsFlipped = 0;
@@ -35,6 +29,44 @@ function howManyCardsAreFlipped(){
 		}
 	}
 	return numOfCardsFlipped; //return the boolean
+}
+
+function foundAllMatches(){
+	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
+	for (let c of listOfCards){ // for loop to loop through all the cards
+		if (!isCardMatched(c)){ // if the card if flipped
+			return false;
+		}
+	}
+	return true; //return the boolean\
+}
+
+
+function getSymbol(card){
+	return card.getElementsByClassName("fa")[0].className;
+}
+
+function isCardFlipped(card){ // is a function that asks if a specific card is flipped
+	return card.className === "card open show";
+}
+
+function isCardMatched(card){ // is a function that asks if a specific card is flipped
+	return card.className === "card open show match";
+}
+
+function updateMoveCounter() {
+	moveCounter++;
+	document.getElementsByClassName("moves")[0].innerHTML = moveCounter;
+
+	if (moveCounter == 24 || moveCounter == 32 || moveCounter == 48) {
+		let parent = document.getElementsByClassName("stars")[0];
+		let child = parent.children[0];
+		parent.removeChild(child);
+	}
+}
+
+
+function displayFinalScore(){
 }
 
 
@@ -48,6 +80,7 @@ function cardClickHandler(card) {
 	// Since this is the first click on a card, we always just flip it and exit.
 	if (past_flipped_card === false) { 
 		flipCard(card); // flip the card
+		updateMoveCounter();
 		return;
 	}
 
@@ -57,16 +90,22 @@ function cardClickHandler(card) {
 	}
 
 	flipCard(card);
-		//if they are the same symbol then i want the two flipped cards to remain flipped
-		//set both cards to the match class
+	updateMoveCounter();
+
+	//if they are the same symbol then i want the two flipped cards to remain flipped
+	//set both cards to the match class
 	let second_symbol = getSymbol(card);
 	let first_symbol = getSymbol(past_flipped_card);
 
 	if (first_symbol === second_symbol){
 		matchCard(past_flipped_card);
 		matchCard(card);
+		if (foundAllMatches()) {
+			displayFinalScore();
+		}
 		return;
 	}
+
 	//flip both cards back because they're not a match
 	setTimeout(function() {
 		flipCard(past_flipped_card);
@@ -74,16 +113,13 @@ function cardClickHandler(card) {
 	} ,500);
 }
 
-function getSymbol(card){
-	let symbolElement = card.getElementsByClassName("fa")[0];
-	return symbolElement.className;
-}
-
-function isCardFlipped(card){ // is a function that asks if a specific card is flipped
-	if (card.className === "card open show"){ //if the class on the card has open and show, then it is flipped
-		return true;
+function initBoard() {
+	// Shuffle all cards
+	let deck = document.querySelector('.deck');
+	let children = shuffle(deck.children);
+	for (let i of children) {
+		deck.appendChild(i);
 	}
-	return false;
 }
 
 /*
@@ -106,19 +142,6 @@ function shuffle(array) {
     }
     return array;
 }
-
-function initBoard() {
-
-	// Shuffle all cards
-	let deck = document.querySelector('.deck');
-	let children = shuffle(deck.children);
-	for (let i of children) {
-		deck.appendChild(i);
-	}
-
-
-}
-
 initBoard();
 
 /*
