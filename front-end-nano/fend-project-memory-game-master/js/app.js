@@ -51,24 +51,30 @@ function isCardFlipped(card){ // is a function that asks if a specific card is f
 }
 
 function isCardMatched(card){ // is a function that asks if a specific card is flipped
-	return card.className === "card open show match";
+	return card.className === "card match";
 }
 
 function updateMoveCounter() {
 	moveCounter++;
 	document.getElementsByClassName("moves")[0].innerHTML = moveCounter;
 
-	if (moveCounter == 24 || moveCounter == 32 || moveCounter == 48) {
+	if (moveCounter == 24) {
 		let parent = document.getElementsByClassName("stars")[0];
 		let child = parent.children[0];
-		parent.removeChild(child);
+		child.style.visibility = 'hidden';
 	}
+	if ( moveCounter == 32) {
+		let parent = document.getElementsByClassName("stars")[0];
+		let child = parent.children[1];
+		child.style.visibility = 'hidden';
+	}
+	if (moveCounter == 48) {
+		let parent = document.getElementsByClassName("stars")[0];
+		let child = parent.children[2];
+		child.style.visibility = 'hidden';
+	}
+
 }
-
-
-function displayFinalScore(){
-}
-
 
 function cardClickHandler(card) {
 	//So that the user can not click more than 2 cards at a time.
@@ -98,6 +104,8 @@ function cardClickHandler(card) {
 	let first_symbol = getSymbol(past_flipped_card);
 
 	if (first_symbol === second_symbol){
+		flipCard(past_flipped_card);
+		flipCard(card);
 		matchCard(past_flipped_card);
 		matchCard(card);
 		if (foundAllMatches()) {
@@ -120,6 +128,14 @@ function initBoard() {
 	for (let i of children) {
 		deck.appendChild(i);
 	}
+	setTimer();
+}
+function setTimer(){
+	let timer = new Date()
+	let h = timer.getHours();
+	let m = timer.getMinutes();
+	let s = timer.getSeconds();
+	document.getElementsByClassName("timer")[0].innerHTML = h + ":" + m + ":" + s;
 }
 
 /*
@@ -142,6 +158,30 @@ function shuffle(array) {
     }
     return array;
 }
+
+function resetClickHandler(button){ 
+	let listOfCards = document.getElementsByClassName("card");
+	for (let c of listOfCards){ // for loop to loop through all the cards
+		if (isCardMatched(c) === true){
+			matchCard(c);
+		}
+		if (isCardFlipped(c) === true){ // if the card if flipped
+			flipCard(c);
+		}
+	}
+
+	let parent = document.getElementsByClassName("stars")[0];
+	for (let child of parent.children) {
+		child.style.visibility = '';
+	}
+	moveCounter = -1;
+	updateMoveCounter();
+	initBoard();
+}
+
+
+
+
 initBoard();
 
 /*
