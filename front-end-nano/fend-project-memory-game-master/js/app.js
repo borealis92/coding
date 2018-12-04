@@ -1,5 +1,6 @@
 
 let moveCounter = 0;
+let start_time = new Date();
 
 function flipCard(card) {
 	card.classList.toggle("open"); //changes the color of the card
@@ -109,7 +110,7 @@ function cardClickHandler(card) {
 		matchCard(past_flipped_card);
 		matchCard(card);
 		if (foundAllMatches()) {
-			displayFinalScore();
+			openModal();
 		}
 		return;
 	}
@@ -130,12 +131,15 @@ function initBoard() {
 	}
 	setTimer();
 }
+
 function setTimer(){
-	let timer = new Date()
-	let h = timer.getHours();
-	let m = timer.getMinutes();
-	let s = timer.getSeconds();
-	document.getElementsByClassName("timer")[0].innerHTML = h + ":" + m + ":" + s;
+	let current_time = new Date();
+	let offset_time = current_time - start_time;
+	document.getElementsByClassName("timer")[0].innerHTML = "Timer: " + parseInt(offset_time / 1000);
+
+	if (!foundAllMatches()) {
+		setTimeout(setTimer, 1000);
+	}
 }
 
 /*
@@ -160,6 +164,7 @@ function shuffle(array) {
 }
 
 function resetClickHandler(button){ 
+	closeModal();
 	let listOfCards = document.getElementsByClassName("card");
 	for (let c of listOfCards){ // for loop to loop through all the cards
 		if (isCardMatched(c) === true){
@@ -170,17 +175,50 @@ function resetClickHandler(button){
 		}
 	}
 
-	let parent = document.getElementsByClassName("stars")[0];
-	for (let child of parent.children) {
-		child.style.visibility = '';
+	for (let parent of document.getElementsByClassName("stars")) {
+		for (let child of parent.children) {
+			child.style.visibility = '';
+		}
 	}
+	start_time = new Date();
 	moveCounter = -1;
 	updateMoveCounter();
 	initBoard();
 }
 
+function openModal() {
+	let modal = document.getElementsByClassName('modal')[0];
+	modal.style.display = "block";
+	document.getElementsByClassName('numMoves')[0].innerHTML = "It took derpy " + moveCounter + " moves";
+	let current_time = new Date();
+	let offset_time = current_time - start_time;
+	let minutes = parseInt(offset_time / 1000 / 60);
+	let seconds = parseInt(offset_time / 1000) % 60;
+	document.getElementsByClassName('timeTook')[0].innerHTML = "in " + minutes + " min and " + seconds + " seconds";
+
+	if (moveCounter >= 24) {
+		let parent = document.getElementsByClassName("stars")[1];
+		let child = parent.children[0];
+		child.style.visibility = 'hidden';
+	}
+	if ( moveCounter >= 32) {
+		let parent = document.getElementsByClassName("stars")[1];
+		let child = parent.children[1];
+		child.style.visibility = 'hidden';
+	}
+	if (moveCounter >= 48) {
+		let parent = document.getElementsByClassName("stars")[1];
+		let child = parent.children[2];
+		child.style.visibility = 'hidden';
+	}
+
+}
 
 
+function closeModal() {
+	let modal = document.getElementsByClassName('modal')[0];
+	modal.style.display = "none";
+}
 
 initBoard();
 

@@ -29,8 +29,23 @@
             <div class="restart" onClick="resetClickHandler(this)">
         		<i class="fa fa-repeat"></i>
         	</div>
-
         </section>
+
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;&times;&times;</span>
+                <p class= "congrats"> Congratulations You Won!</p>
+                <p class = "numMoves"> It took you X moves </p>
+                <p class = "timeTook"> in X min and X sec </p>
+                <p>Your star rating is:
+                    <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                    </ul> 
+            <botton class="restart" onClick="resetClickHandler(this)" type="button">Play again!</button>
+            </div>
+        </div>
 
         <ul class="deck">
             <li class="card" onClick="cardClickHandler(this)">
