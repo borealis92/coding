@@ -1,20 +1,24 @@
 # Memory Game Project
 
-## Table of Contents
+This is a matching game with cards that is played in the browser.
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## How to play?
 
-## Instructions
+* The game begins as soon as the browser is loaded.
+* The player should begin clicking on a card to see what symbol is underneath.
+* When a match is found, the player will not need to re-click on those matches.
+* Continue until every card is matched.
+* Once every card is matched the game will end and give the player their results, as well as, an option to play again.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+## Where to get this game and begin to play?
 
-To get started, open `js/app.js` and start building out the app's functionality
+1. Download or Clone the Repository.
+2. Open the index.html file in your browser.
+3. The game will begine immediately. 
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## A shout out to
 
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* Udacity for the walk throughs.
+* Google for the endless searches.
+* W3School for filling in my coding blanks. 
+* StackOverFlow for answering all of my questions.  

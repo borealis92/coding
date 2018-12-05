@@ -33,17 +33,18 @@
 
         <div class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;&times;&times;</span>
+                <span class="close" onclick="closeModal()"><strong>&times;</strong></span>
+                <button class="play-again" onClick="resetClickHandler(this)" type="button">Play again!</button>
                 <p class= "congrats"> Congratulations You Won!</p>
-                <p class = "numMoves"> It took you X moves </p>
-                <p class = "timeTook"> in X min and X sec </p>
+                <p class="numMoves"> It took you X moves </p>
+                <p class="timeTook"> in X min and X sec </p>
                 <p>Your star rating is:
                     <ul class="stars">
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
                         <li><i class="fa fa-star"></i></li>
                     </ul> 
-            <botton class="restart" onClick="resetClickHandler(this)" type="button">Play again!</button>
+                </p>
             </div>
         </div>
 

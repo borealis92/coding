@@ -1,61 +1,72 @@
 
+// Global variables for keeping track the start time and how many moves were made
 let moveCounter = 0;
 let start_time = new Date();
 
+// We flip a card by either adding or removing both "open" and "show" classes
 function flipCard(card) {
-	card.classList.toggle("open"); //changes the color of the card
-    card.classList.toggle("show"); // adds the fa fa symbol
+	card.classList.toggle("open");
+    card.classList.toggle("show");
 }
 
+// We mark a card by adding the match class.
 function matchCard(element) {
-	element.classList.toggle("match"); 
+	element.classList.toggle("match"); //keeps the matches openfaced
 }
 
-function firstFlippedCard(){ // is a function that asks if any card is flipped
-	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
-	for (let c of listOfCards){ // for loop to loop through all the cards
-		if (isCardFlipped(c) === true){ // if the card if flipped
+// Go through all cards and return the first one that is flipped over.
+function firstFlippedCard(){
+	let listOfCards = document.getElementsByClassName("card");
+	for (let c of listOfCards) { 
+		if (isCardFlipped(c) === true) {
 			return c;
 		}
 	}
-	return false; //return the boolean
+	// If no card is flipped over then we failed so we should not return a card
+	return false;
 }
 
+// Go through all cards and return a count of how many are flipped up (not including matched ones)
 function howManyCardsAreFlipped(){
-	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
+	let listOfCards = document.getElementsByClassName("card");
 	let numOfCardsFlipped = 0;
-	for (let c of listOfCards){ // for loop to loop through all the cards
-		if (isCardFlipped(c) === true){ // if the card if flipped
+	for (let c of listOfCards) {
+		if (isCardFlipped(c) === true) {
 			numOfCardsFlipped += 1;
 		}
 	}
-	return numOfCardsFlipped; //return the boolean
+	return numOfCardsFlipped;
 }
 
+// Returns a boolean whether we have found all matches (finished the game)
+// We assume that we're not done if any cards are not yet matched
 function foundAllMatches(){
-	let listOfCards = document.getElementsByClassName("card"); // Get a list of the available cards
-	for (let c of listOfCards){ // for loop to loop through all the cards
-		if (!isCardMatched(c)){ // if the card if flipped
+	let listOfCards = document.getElementsByClassName("card");
+	for (let c of listOfCards) {
+		if (!isCardMatched(c)) {
 			return false;
 		}
 	}
-	return true; //return the boolean\
+	return true;
 }
 
-
+// Gets the classes that correspond to the symbol of cards. It also includes the first fa
 function getSymbol(card){
 	return card.getElementsByClassName("fa")[0].className;
 }
 
-function isCardFlipped(card){ // is a function that asks if a specific card is flipped
+// Is the specific card flipped over?
+function isCardFlipped(card){
 	return card.className === "card open show";
 }
 
-function isCardMatched(card){ // is a function that asks if a specific card is flipped
+// Is the specific card matched?
+function isCardMatched(card){
 	return card.className === "card match";
 }
 
-function updateMoveCounter() {
+// Increments the move counter and updates star rating
+function updateMoveCounter(){
 	moveCounter++;
 	document.getElementsByClassName("moves")[0].innerHTML = moveCounter;
 
@@ -77,12 +88,13 @@ function updateMoveCounter() {
 
 }
 
+// A large function that handles all events that need to happen when a card is clicked.
 function cardClickHandler(card) {
 	//So that the user can not click more than 2 cards at a time.
 	if (howManyCardsAreFlipped() >= 2){
 		return;
 	}
-	let past_flipped_card = firstFlippedCard(); // Calls the  finction to see if the card is flipped
+	let past_flipped_card = firstFlippedCard();
 
 	// Since this is the first click on a card, we always just flip it and exit.
 	if (past_flipped_card === false) { 
@@ -96,14 +108,14 @@ function cardClickHandler(card) {
 		return;
 	}
 
+	// Otherwise this is a fair second move
 	flipCard(card);
 	updateMoveCounter();
 
-	//if they are the same symbol then i want the two flipped cards to remain flipped
-	//set both cards to the match class
+	// If they are the same symbol then i want the two flipped cards to remain flipped
+	// Set both cards to the match class
 	let second_symbol = getSymbol(card);
 	let first_symbol = getSymbol(past_flipped_card);
-
 	if (first_symbol === second_symbol){
 		flipCard(past_flipped_card);
 		flipCard(card);
@@ -115,13 +127,14 @@ function cardClickHandler(card) {
 		return;
 	}
 
-	//flip both cards back because they're not a match
+	// Flip both cards back eventually because they're not a match
 	setTimeout(function() {
 		flipCard(past_flipped_card);
 		flipCard(card);
 	} ,500);
 }
 
+// Shuffles the deck of cards and initializes the timer.
 function initBoard() {
 	// Shuffle all cards
 	let deck = document.querySelector('.deck');
@@ -132,6 +145,7 @@ function initBoard() {
 	setTimer();
 }
 
+// This is the timer in the game. Get the current time and subtracts the start time to get sec and min.
 function setTimer(){
 	let current_time = new Date();
 	let offset_time = current_time - start_time;
@@ -163,6 +177,7 @@ function shuffle(array) {
     return array;
 }
 
+//This is my reset button so that players can flip all of the cards in a start postion and it shuffles the cards again.
 function resetClickHandler(button){ 
 	closeModal();
 	let listOfCards = document.getElementsByClassName("card");
@@ -186,15 +201,16 @@ function resetClickHandler(button){
 	initBoard();
 }
 
+// Opens and populates the end result of how the player did.
 function openModal() {
 	let modal = document.getElementsByClassName('modal')[0];
 	modal.style.display = "block";
-	document.getElementsByClassName('numMoves')[0].innerHTML = "It took derpy " + moveCounter + " moves";
+	document.getElementsByClassName('numMoves')[0].innerHTML = "It took you " + moveCounter + " moves!";
 	let current_time = new Date();
 	let offset_time = current_time - start_time;
 	let minutes = parseInt(offset_time / 1000 / 60);
 	let seconds = parseInt(offset_time / 1000) % 60;
-	document.getElementsByClassName('timeTook')[0].innerHTML = "in " + minutes + " min and " + seconds + " seconds";
+	document.getElementsByClassName('timeTook')[0].innerHTML = "In  " + minutes + " minutes & " + seconds + " seconds.";
 
 	if (moveCounter >= 24) {
 		let parent = document.getElementsByClassName("stars")[1];
@@ -214,7 +230,7 @@ function openModal() {
 
 }
 
-
+// Closes the results popup modal
 function closeModal() {
 	let modal = document.getElementsByClassName('modal')[0];
 	modal.style.display = "none";
@@ -232,5 +248,3 @@ initBoard();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-
