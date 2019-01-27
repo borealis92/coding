@@ -1,7 +1,7 @@
 /* feedreader.js
  *
  * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
+ * all of the tests that will be run against this application.
  */
 
 /* We're placing all of our tests within the $() function,
@@ -63,18 +63,18 @@ $(function() {
             expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
 
-         /* A test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+        /* A test that ensures the menu changes
+         * visibility when the menu icon is clicked. This test
+         * should have two expectations: does the menu display when
+         * clicked and does it hide when clicked again.
+         */
         it('menu changed when clicked', function(){
             //Simulate a click
-           var menuIcon = $('.menu-icon-link');
-           menuIcon.click();
-           expect(document.body.classList.contains('menu-hidden')).toBe(false);
-           menuIcon.click();
-           expect(document.body.classList.contains('menu-hidden')).toBe(true);
+            var menuIcon = $('.menu-icon-link');
+            menuIcon.click();
+            expect(document.body.classList.contains('menu-hidden')).toBe(false);
+            menuIcon.click();
+            expect(document.body.classList.contains('menu-hidden')).toBe(true);
         });
     });
 
@@ -86,7 +86,6 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
         beforeEach(function(done){
             loadFeed(0,function(){
                 done();
@@ -105,18 +104,18 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         var firstFeed;
-         beforeEach(function(done){
+        var firstFeed;
+        beforeEach(function(done){
             loadFeed(0,function(){
                 var firstFeed = document.getElementsByClassName('feed');
-                loadFeed(1,function(){
+                loadFeed(1, function(){
                     done();
                 });
             });
-         });
-         it('contents change when feed is loaded',function(){
+        });
+        it('contents change when feed is loaded',function(){
             var nextFeed = document.getElementsByClassName('feed');
             expect(nextFeed).not.toBe(firstFeed);
-         });
+        });
     });
 }());

@@ -1,9 +1,8 @@
 ### Feed Reader Testing Project for the Fron End Nanodegree Program with Udacity
 
-
 # Project Overview
 
-In this project you are given a web-based application that reads RSS feeds. The website consists of a Udacity Blog that has linked to important and relevant articles about career success! In this blog there is a drop down menu on the left that directs you to CSS Tricks, HTML5 Rocks, Linear Digressions. 
+For this project I added tests to a web-based application that reads RSS feeds. The website consists of a Udacity Blog that has linked to important and relevant articles about career success! In this blog there is a drop down menu on the left that directs you to CSS Tricks, HTML5 Rocks, Linear Digressions. 
 
 # The Job
 
