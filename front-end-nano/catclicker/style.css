@@ -1,0 +1,24 @@
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.cat {
+    width: 170px;
+    min-height: 80px;
+    padding: 32px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+    background: url('thecat.png'); /* Background pattern from Udacity cat */
+}
+
+.cat.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
