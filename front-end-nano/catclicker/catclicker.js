@@ -8,7 +8,7 @@ function clickcat(cat) {
 function clickcounter(){
 	counter++;
 	document.getElementsByClassName("moves")[0].innerHTML = counter;
-	if(counter == 2){
+	if(counter == 10){
 		alert(counter);
 	}
 };

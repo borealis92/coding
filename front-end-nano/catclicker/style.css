@@ -14,10 +14,25 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
-    background: url('thecat.png'); /* Background pattern from Udacity cat */
+    background: url('img/thecat.png'); /* Background pattern from Udacity cat */
+}
+.cat2 {
+    width: 170px;
+    min-height: 80px;
+    padding: 32px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+    background: url('img/thecat2.png'); /* Background pattern from Udacity cat */
 }
 
 .cat.open {
+    transform: rotateY(0);
+    background: #02b3e4;
+    cursor: default;
+}
+.cat2.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
