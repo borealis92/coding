@@ -24,3 +24,7 @@ hs_err_pid*
 # Pycharn related
 venv
 .idea
+
+# Additional files from usage
+.Rhistory
+.ipynb_checkpoints
