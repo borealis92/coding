@@ -104,11 +104,21 @@ nav h1 a {
   background-color: #ccc;
 }
 /* ====================== Restaurant Filtering ====================== */
+.filter-section{
+ background-color: #3397DB;
+}
 .filter-options {
-  width: 100%;
-  height: 50px;
-  background-color: #3397DB;
+  flex-direction: column;
+  display: flex;
   align-items: center;
+  max-width: 600px;
+  margin:auto; 
+}
+
+@media screen and (min-width: 550px){
+  .filter-options{
+    flex-direction: row;
+  }
 }
 .filter-options h2 {
   color: white;
