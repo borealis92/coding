@@ -18,7 +18,7 @@
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
+    <ul id="breadcrumb" aria-label="Breadcrumb" role="navigation">
       <li><a href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
@@ -29,24 +29,24 @@
   <!-- Beginning main -->
   <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+    <section id="map-container" aria-hidden="true" tabIndex="-1">
+      <div id="map" tabIndex="-1"></div>
     </section>
 
     <!-- End map -->
     <!-- Beginning restaurant -->
 
     <section id="restaurant-container">
-      <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
-      <p id="restaurant-cuisine"></p>
-      <p id="restaurant-address"></p>
-      <table id="restaurant-hours"></table>
+      <h1 id="restaurant-name" tabIndex="0"></h1>
+      <img id="restaurant-img" tabIndex="0">
+      <p id="restaurant-cuisine" tabIndex="0"></p>
+      <p id="restaurant-address" tabIndex="0"></p>
+      <table id="restaurant-hours" tabIndex="0"></table>
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
 
-    <section id="reviews-container">
+    <section id="reviews-container"tabindex="0">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
@@ -69,6 +69,20 @@
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
+  <script>
+  function eraseTabIndex(node) {
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var child = node.childNodes[i];
+      eraseTabIndex(child);
+      child.tabIndex = "-1";
+    };
+  };
+
+  function eraseMapTabIndex() {
+    eraseTabIndex(document.getElementById("map"));
+  };
+  var timer = setInterval(eraseMapTabIndex, 1000);
+  </script>
 </body>
 
 </html>
