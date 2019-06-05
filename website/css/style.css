@@ -95,15 +95,16 @@ body {
   height: auto;
 }
 
-.image-resizer {
-  max-width: 50%;
- }
 
-.heart-resizer {
+.image-resizer {
   max-width: 80%;
-  max-height: 500px;
+  max-height: 260px;
 }
 
 .right-pad {
   padding-right: 5%;
+}
+
+.summary {
+    padding-top: 1em;
 }
