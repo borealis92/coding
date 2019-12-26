@@ -95,10 +95,13 @@ body {
   height: auto;
 }
 
-
 .image-resizer {
-  max-width: 80%;
-  max-height: 260px;
+  max-width: 70%;
+  max-height: 150px;
+}
+
+.photo {
+  max-height: 250px;
 }
 
 .right-pad {
@@ -106,5 +109,5 @@ body {
 }
 
 .summary {
-    padding-top: 1em;
+  padding-top: 1em;
 }
